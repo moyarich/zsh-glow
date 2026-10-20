@@ -2,7 +2,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { looksLikeMarkdown } from "../../../packages/zsh-glow/src/markdown";
 
-const examples = ["# Heading\n\nMarkdown output", "| Name | Status |\n| --- | --- |\n| CLI | ready |", "npm notice run test"];
+const examples = [
+  "# Heading\n\nMarkdown output",
+  "| Name | Status |\n| --- | --- |\n| CLI | ready |",
+  "npm notice run test",
+];
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <main>
@@ -11,7 +15,11 @@ createRoot(document.getElementById("root")!).render(
       {examples.map((example, index) => (
         <section key={index}>
           <pre>{example}</pre>
-          <p>{looksLikeMarkdown(example) ? "Render through Glow" : "Preserve terminal output"}</p>
+          <p>
+            {looksLikeMarkdown(example)
+              ? "Render through Glow"
+              : "Preserve terminal output"}
+          </p>
         </section>
       ))}
     </main>
