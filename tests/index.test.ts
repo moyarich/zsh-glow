@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { greet } from "../src/index.js";
-
-describe("template", () => {
-  it("runs Vitest", () => {
-    expect(greet("world")).toBe("Hello, world!");
+import { looksLikeMarkdown } from "../packages/zsh-glow/src/markdown";
+describe("zsh-glow integration", () => {
+  it("detects Markdown and preserves ordinary output", () => {
+    expect(looksLikeMarkdown("# Hello")).toBe(true);
+    expect(looksLikeMarkdown("npm notice run test")).toBe(false);
   });
 });
