@@ -8,7 +8,10 @@ const ESC = "\u001b";
 const BEL = "\u0007";
 const ST = `${ESC}\\`;
 
-const screenshotDir = resolve(process.cwd(), "test-results/terminal-screenshots");
+const screenshotDir = resolve(
+  process.cwd(),
+  "test-results/terminal-screenshots",
+);
 function saveScreenshot(
   term: ReturnType<typeof createTestTerminal>,
   name: string,
