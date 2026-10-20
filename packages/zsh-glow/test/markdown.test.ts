@@ -5,10 +5,17 @@ describe("Markdown detection", () => {
     expect(looksLikeMarkdown("# Hello")).toBe(true);
     expect(looksLikeMarkdown("## Build results")).toBe(true);
     expect(looksLikeMarkdown("before\n```ts\nconst x = 1;\n```")).toBe(true);
-    expect(looksLikeMarkdown("| Name | Status |\n| --- | --- |\n| api | active |")).toBe(true);
+    expect(
+      looksLikeMarkdown("| Name | Status |\n| --- | --- |\n| api | active |"),
+    ).toBe(true);
   });
   it("preserves ordinary terminal output", () => {
-    for (const value of ["foo | bar | baz","build #123 completed","npm notice run test","On branch main\nnothing to commit"]) {
+    for (const value of [
+      "foo | bar | baz",
+      "build #123 completed",
+      "npm notice run test",
+      "On branch main\nnothing to commit",
+    ]) {
       expect(looksLikeMarkdown(value)).toBe(false);
     }
   });
