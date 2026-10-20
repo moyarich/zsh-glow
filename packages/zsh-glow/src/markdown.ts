@@ -1,7 +1,8 @@
 // ANSI escape matching requires control bytes in this expression.
-// eslint-disable-next-line no-control-regex
+/* eslint-disable no-control-regex */
 const ANSI_PATTERN =
   /\x1B(?:[@-_][0-?]*[ -/]*[@-~]|\][^\x07]*(?:\x07|\x1B\\))/g;
+/* eslint-enable no-control-regex */
 export function stripAnsi(value: string): string {
   return value.replace(ANSI_PATTERN, "");
 }
