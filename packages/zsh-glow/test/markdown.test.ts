@@ -24,10 +24,9 @@ describe("Markdown detection", () => {
   });
 });
 
-
-const ESC = "\\u001b";
-const BEL = "\\u0007";
-const ST = `${ESC}\\\\`;
+const ESC = "\u001b";
+const BEL = "\u0007";
+const ST = `${ESC}\\`;
 
 describe("terminal control sequence stripping", () => {
   it.each([
@@ -52,7 +51,7 @@ describe("terminal control sequence stripping", () => {
   });
 
   it("leaves ordinary Markdown untouched", () => {
-    const input = "# Heading\\nSome **bold** Markdown.";
+    const input = "# Heading\nSome **bold** Markdown.";
     expect(stripAnsi(input)).toBe(input);
   });
 });
