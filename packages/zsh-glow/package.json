@@ -1,0 +1,35 @@
+{
+  "name": "@moyarich/zsh-glow",
+  "version": "0.1.0",
+  "description": "Zsh plugin and PTY CLI to render Markdown terminal output using Glow",
+  "type": "module",
+  "bin": {
+    "zsh-glow": "./bin/zsh-glow.mjs"
+  },
+  "files": [
+    "bin",
+    "plugin",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "vite build --config vite.config.ts",
+    "test": "vitest run test",
+    "typecheck": "tsc -p tsconfig.json",
+    "checks": "npm run typecheck && npm run build && npm test"
+  },
+  "dependencies": {
+    "node-pty": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moyarich/zsh-glow.git",
+    "directory": "packages/zsh-glow"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}
