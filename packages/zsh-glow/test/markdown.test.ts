@@ -38,8 +38,16 @@ describe("terminal control sequence stripping", () => {
     ["CSI erase line", `${ESC}[K# Title`, "# Title"],
     ["OSC title BEL", `${ESC}]0;Terminal title${BEL}# Hello`, "# Hello"],
     ["OSC title ST", `${ESC}]0;Terminal title${ST}# Hello`, "# Hello"],
-    ["OSC 8 hyperlink BEL", `${ESC}]8;;https://example.com${BEL}Link${ESC}]8;;${BEL}`, "Link"],
-    ["OSC 8 hyperlink ST", `${ESC}]8;;https://example.com${ST}Link${ESC}]8;;${ST}`, "Link"],
+    [
+      "OSC 8 hyperlink BEL",
+      `${ESC}]8;;https://example.com${BEL}Link${ESC}]8;;${BEL}`,
+      "Link",
+    ],
+    [
+      "OSC 8 hyperlink ST",
+      `${ESC}]8;;https://example.com${ST}Link${ESC}]8;;${ST}`,
+      "Link",
+    ],
   ])("strips %s", (_case, input, expected) => {
     expect(stripAnsi(input)).toBe(expected);
   });
