@@ -1,12 +1,12 @@
 {
-  "name": "monorepo-template",
+  "name": "zsh-glow-workspace",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "npm run dev --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
-    "build:packages": "npm run build --workspaces --if-present",
+    "build:packages": "npm run build --workspace @moyarich/zsh-glow",
     "build:playground": "npm run build --workspace apps/playground",
     "test": "npm test --workspaces --if-present",
     "test:watch": "npm run test:watch --workspaces --if-present",
@@ -16,7 +16,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "checks": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build",
-    "pack:check": "npm pack --workspaces --dry-run"
+    "pack:check": "npm pack --workspace @moyarich/zsh-glow --dry-run"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
