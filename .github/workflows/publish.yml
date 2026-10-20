@@ -25,7 +25,7 @@ on:
         default: all
         options:
           - all
-          - packages/example
+          - packages/zsh-glow
       registry:
         description: Publish destination
         required: true
