@@ -31,5 +31,17 @@
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "author": "moyarich",
+  "homepage": "https://github.com/moyarich/zsh-glow#readme",
+  "bugs": {
+    "url": "https://github.com/moyarich/zsh-glow/issues"
+  },
+  "keywords": [
+    "zsh",
+    "glow",
+    "markdown",
+    "terminal",
+    "cli"
+  ]
 }
