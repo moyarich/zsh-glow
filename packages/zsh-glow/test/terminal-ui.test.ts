@@ -64,13 +64,14 @@ describe("terminal UI", () => {
 
   it("runs a real Zsh command under a PTY", async () => {
     const term = createTestTerminal({ cols: 80, rows: 24 });
-    await term.spawn(["zsh", "-c", "cd /tmp && printf 'PWD_OK\\n'"]);
+    // Termless owns a live PTY: wait for process output, not terminal screen timing.
     try {
+      await term.spawn(["zsh", "-c", "cd /tmp && printf 'PWD_OK\\n'"]);
       await term.waitFor("PWD_OK");
       saveScreenshot(term, "zsh-pty");
       expect(term.buffer).toContainText("PWD_OK");
     } finally {
       await term.close();
     }
-  });
+  }, 15000);
 });
