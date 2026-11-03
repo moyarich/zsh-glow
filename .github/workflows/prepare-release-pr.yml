@@ -9,7 +9,7 @@ on:
         required: true
         default: all
       version-mode:
-        description: Version calculation mode (choose package-json to use existing versions)
+        description: Version calculation mode
         type: choice
         options: [auto, bump, package-json, exact]
         required: true
