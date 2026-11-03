@@ -14,7 +14,7 @@
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --write .github/workflows/ci_package-lock.yml .github/workflows/ci_prettier.yml && git --no-pager diff -- .github/workflows/ci_package-lock.yml .github/workflows/ci_prettier.yml && prettier --check .",
+    "format:check": "prettier --check .",
     "checks": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build",
     "pack:check": "npm pack --workspace @moyarich/zsh-glow --dry-run"
   },
