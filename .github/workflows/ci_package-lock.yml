@@ -29,7 +29,6 @@ jobs:
   lockfile:
     uses: moyarich/reusable-workflows/.github/workflows/reusable_self-heal_package-lock.yml@main
     with:
-      mode: >-
-        ${{ ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) || (github.event_name == 'workflow_dispatch' && !inputs.repair)) && 'check' || 'fix' }}
-      commit: >-
-        ${{ (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event_name != 'workflow_dispatch' || inputs.repair) }}
+      mode: ${{ ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) || (github.event_name == 'workflow_dispatch' && !inputs.repair)) && 'check' || 'fix' }}
+      commit: ${{ (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event_name != 'workflow_dispatch' || inputs.repair) }}
+

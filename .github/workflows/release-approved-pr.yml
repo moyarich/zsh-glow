@@ -7,11 +7,11 @@ on:
   workflow_dispatch:
     inputs:
       pr-number:
-        description: "Merged release preparation PR number (for example, 225)"
+        description: 'Merged release preparation PR number (for example, 225)'
         required: true
         type: string
       dry-run:
-        description: "Preview release drafts without writing GitHub Releases"
+        description: 'Preview release drafts without writing GitHub Releases'
         required: true
         default: true
         type: boolean
