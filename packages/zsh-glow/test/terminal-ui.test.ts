@@ -67,7 +67,7 @@ describe("terminal UI", () => {
     try {
       // Keep the interactive shell alive while waiting for PTY output.
       await term.spawn(["zsh", "-f"]);
-      await term.write("printf 'PWD_OK\\n'\r");
+      await term.write("printf 'PWD_OK\\\\n'\\r");
       await term.waitFor("PWD_OK", 10000);
       saveScreenshot(term, "zsh-pty");
       expect(term.buffer).toContainText("PWD_OK");
