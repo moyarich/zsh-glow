@@ -66,20 +66,19 @@ describe("terminal UI", () => {
   it.skipIf(spawnSync("zsh", ["--version"], { stdio: "ignore" }).error?.code === "ENOENT")(
     "runs a real Zsh command and renders its output",
     async () => {
-    // Termless is used for deterministic terminal rendering checks above.
-    // For a real subprocess, use execFile rather than a PTY
-    // observer that can miss output on busy CI runners.
-    const { execFile } = await import("node:child_process");
-    const { promisify } = await import("node:util");
-    const { stdout } = await promisify(execFile)("zsh", [
-      "-f",
-      "-c",
-      "cd /tmp && printf 'PWD_OK\\n'",
-    ]);
-    const term = createTestTerminal({ cols: 80, rows: 24 });
-    term.feed(stdout);
-    saveScreenshot(term, "zsh-command");
-    expect(term.buffer).toContainText("PWD_OK");
+      // Termless tests deterministic rendering above; use an actual Zsh
+      // subprocess for integration coverage where Zsh is installed.
+      const { execFile } = await import("node:child_process");
+      const { promisify } = await import("node:util");
+      const { stdout } = await promisify(execFile)("zsh", [
+        "-f",
+        "-c",
+        "cd /tmp && printf 'PWD_OK\\n'",
+      ]);
+      const term = createTestTerminal({ cols: 80, rows: 24 });
+      term.feed(stdout);
+      saveScreenshot(term, "zsh-command");
+      expect(term.buffer).toContainText("PWD_OK");
     },
     15000,
   );
