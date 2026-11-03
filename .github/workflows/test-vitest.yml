@@ -29,6 +29,22 @@ jobs:
           cache: npm
       - name: Install Zsh for terminal PTY tests
         run: sudo apt-get update -qq && sudo apt-get install -y zsh
+      - name: Install Glow
+        run: |
+          sudo mkdir -p /etc/apt/keyrings
+          curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --batch --dearmor -o /etc/apt/keyrings/charm.gpg
+          echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+          sudo apt-get update -qq
+          sudo apt-get install -y glow
+          glow --version
       - run: npm ci --include=optional
       - name: Run Vitest suites
         run: npx vitest run
+      - name: Upload terminal UI screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: terminal-ui-screenshots
+          path: test-results/terminal-screenshots/*.svg
+          if-no-files-found: warn
+          retention-days: 14
