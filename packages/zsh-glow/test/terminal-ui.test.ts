@@ -68,7 +68,7 @@ describe("terminal UI", () => {
       // PTY output is asynchronous. Keep the process alive long enough for
       // the terminal observer to receive its command output.
       await term.spawn(["zsh", "-c", "printf 'PWD_OK\\n'; sleep 2"]);
-      await term.waitFor("PWD_OK", { timeout: 10000 });
+      await term.waitFor("PWD_OK", 10000);
       saveScreenshot(term, "zsh-pty");
       expect(term.buffer).toContainText("PWD_OK");
     } finally {
