@@ -65,10 +65,10 @@ describe("terminal UI", () => {
   it("runs a real Zsh command under a PTY", async () => {
     const term = createTestTerminal({ cols: 80, rows: 24 });
     try {
-      // The PTY's output is asynchronous. Keep the shell alive until Termless
-      // observes the marker instead of racing a subprocess that has exited.
+      // PTY output is asynchronous. Keep the process alive long enough for
+      // the terminal observer to receive its command output.
       await term.spawn(["zsh", "-c", "printf 'PWD_OK\\n'; sleep 2"]);
-      await term.waitFor("PWD_OK");
+      await term.waitFor("PWD_OK", { timeout: 10000 });
       saveScreenshot(term, "zsh-pty");
       expect(term.buffer).toContainText("PWD_OK");
     } finally {
