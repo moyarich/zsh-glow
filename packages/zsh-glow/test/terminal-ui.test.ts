@@ -63,7 +63,7 @@ describe("terminal UI", () => {
     expect(looksLikeMarkdown(data)).toBe(false);
   });
 
-  it.skipIf(spawnSync("zsh", ["--version"], { stdio: "ignore" }).error?.code === "ENOENT")(
+  it.skipIf((spawnSync("zsh", ["--version"], { stdio: "ignore" }).error as NodeJS.ErrnoException | undefined)?.code === "ENOENT")(
     "runs a real Zsh command and renders its output",
     async () => {
       // Termless tests deterministic rendering above; use an actual Zsh
