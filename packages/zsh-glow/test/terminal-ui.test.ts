@@ -62,9 +62,9 @@ describe("terminal UI", () => {
     expect(looksLikeMarkdown(data)).toBe(false);
   });
 
-  it("runs a real Zsh command under a PTY", async () => {
+  it("runs a real Zsh command and renders its output", async () => {
     // Termless is used for deterministic terminal rendering checks above.
-    // For a real subprocess, use execFile rather than relying on a PTY
+    // For a real subprocess, use execFile rather than a PTY
     // observer that can miss output on busy CI runners.
     const { execFile } = await import("node:child_process");
     const { promisify } = await import("node:util");
