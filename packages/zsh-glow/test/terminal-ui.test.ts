@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { spawnSync } from "node:child_process";
 import { createTestTerminal } from "@termless/test";
 import { looksLikeMarkdown, stripAnsi } from "../src/markdown.ts";
 
@@ -62,7 +63,9 @@ describe("terminal UI", () => {
     expect(looksLikeMarkdown(data)).toBe(false);
   });
 
-  it("runs a real Zsh command and renders its output", async () => {
+  it.skipIf(spawnSync("zsh", ["--version"], { stdio: "ignore" }).error?.code === "ENOENT")(
+    "runs a real Zsh command and renders its output",
+    async () => {
     // Termless is used for deterministic terminal rendering checks above.
     // For a real subprocess, use execFile rather than a PTY
     // observer that can miss output on busy CI runners.
@@ -77,5 +80,7 @@ describe("terminal UI", () => {
     term.feed(stdout);
     saveScreenshot(term, "zsh-command");
     expect(term.buffer).toContainText("PWD_OK");
-  }, 15000);
+    },
+    15000,
+  );
 });
