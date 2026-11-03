@@ -39,11 +39,9 @@ describe("terminal UI", () => {
 
   it("runs a real Zsh command under a PTY", async () => {
     const term = createTestTerminal({ cols: 80, rows: 24 });
-    await term.spawn([
-      "zsh",
-      "-c",
-      "cd /tmp && printf 'PWD_OK\\n' && sleep 0.2",
-    ]);
-    await expect(term.screen).toContainText("PWD_OK");
+    await term.spawn(["zsh", "-c", "cd /tmp && printf 'PWD_OK\\n'"]);
+    await term.waitFor("PWD_OK");
+    expect(term.buffer).toContainText("PWD_OK");
+    await term.close();
   });
 });
